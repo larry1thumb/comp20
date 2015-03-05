@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Redline</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+    <link rel="stylesheet" href="redline_map.css" />
+
+    <script>
+                              
+      var Davis = new google.maps.LatLng(42.3964, -71.1223);
+      var myOptions = {
+                        zoom: 12,
+                        center: Davis,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var map;
+      var marker;
+
+      function init()
+      {
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        getdata();
+      }
+      
+      function getdata() 
+      {
+        xhr = new XMLHttpRequest();
+        xhr.open("get", "https://serene-coast-8982.herokuapp.com/redline.json", true);
+        xhr.onreadystatechange = dataReady;
+        xhr.send(null); // Go! Execute!
+      }
+      function dataReady() 
+      {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          scheduleData = JSON.parse(xhr.responseText);
+          JSONsearch(scheduleData);
+          //scheduleDom = document.getElementById("schedule");
+        }
+      }
+      function JSONsearch(scheduleData)
+      {
+        for (var i = 0; i < scheduleData['TripList']['Trips'].length; i++)
+          {
+            var sdata = scheduleData['TripList']['Trips'][i];
+            createMarker(sdata);
+          }
+      }
+      function createMarker(sdata)
+      {
+        if (sdata.hasOwnProperty('Position')) {
+          var lat = sdata['Position']['Lat'];
+          var lng = sdata['Position']['Long'];
+          var loc = new google.maps.LatLng(lat, lng);
+          marker = new google.maps.Marker({
+            position: loc,
+            map: map,
+            title: "Redline"
+          });
+          marker.setMap(map);
+        }
+      }
+
+      </script>
+</head>
+
+<body onload="init()">
+  <div id="map_canvas"></div>
+
+</body>
+</html>
+
+
+
+
+

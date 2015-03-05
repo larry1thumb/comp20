@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Daydream Believer</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+<h1 id="title">Daydream Believer</h1>
+
+<video src="http://www.cs.tufts.edu/comp/20/daydream_believer.webm" id="music_video" controls></video>
+<div id="lyrics"></div>
+
+<script>
+  function modifyText() {
+  var p1 = document.getElementById("lyrics");
+   if (v.currentTime > 0 && v.currentTime < 5) {
+      var img = document.createElement("img");
+      img.src = "Notes.png"
+      p1.innerHTML = " ";
+      p1.appendChild(img);
+} 
+   if (v.currentTime > 5 && v.currentTime < 36) {
+      p1.innerHTML = "Oh, I could hide, 'neath the wings <br> Of the bluebird as she sings. <br> The six o'clock alarm would never ring. <br> But it rings and I rise, <br> Wipe the sleep out of my eyes. <br> My shavin' razor's cold and it stings.";
+      var img = document.createElement("img");
+      img.src = "Alarm.png";
+      p1.innerHTML += "<br> <br>";
+      p1.appendChild(img);
+      }
+    if (v.currentTime > 36 && v.currentTime < 53) {
+      p1.innerHTML = "Cheer up, Sleepy Jean. <br> Oh, what can it mean. <br> To a daydream believer <br> And a homecoming queen.";
+  }
+    if (v.currentTime > 53 && v.currentTime < 83) {
+      p1.innerHTML = "You once thought of me <br> As a white knight on a steed. <br> Now you know how happy I can be. <br> Oh, and our good times start and end <br> Without dollar one to spend. <br> But how much, baby, do we really need.";
+}
+    if(v.currentTime > 83 && v.currentTime < 119) {
+      p1.innerHTML = "Cheer up, Sleepy Jean. <br> Oh, what can it mean. <br> To a daydream believer <br> And a homecoming queen.";
+}
+    if(v.currentTime > 119 && v.currentTime < 126) {
+      var img = document.createElement("img");
+      img.src = "Smile.png";
+      p1.innerHTML = " ";
+      p1.appendChild(img);
+}
+    if(v.currentTime > 126 && v.currentTime < 161) {
+      p1.innerHTML = "Cheer up, Sleepy Jean. <br> Oh, what can it mean. <br> To a daydream believer <br> And a homecoming queen.";
+}
+}
+  var v = document.getElementsByTagName("video")[0];
+  v.addEventListener("timeupdate", modifyText, false);
+</script>
+</body>
+</html>

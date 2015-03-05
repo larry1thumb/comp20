@@ -1,0 +1,16 @@
+h1 {
+font-size: 20px;
+font-family: "Georgia";
+font-weight: bold;
+}
+
+#lyrics {
+font-size: 14px;
+text-align: center;
+font-family: "Georgia";
+background-color: yellow;
+}
+
+body {
+text-align: center;
+}
